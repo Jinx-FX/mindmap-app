@@ -94,10 +94,11 @@ function App() {
         node.querySelector('input')?.focus({ preventScroll: true })
       } else if (targetIsPane && connectingNodeId.current) {
         const parentNode = nodeInternals.get(connectingNodeId.current)
-        const childNodePosition = getChildNodePosition(event, parentNode)
-
-        if (parentNode && childNodePosition) {
-          addChildNode(parentNode, childNodePosition)
+        if (event instanceof MouseEvent) {
+          const childNodePosition = getChildNodePosition(event, parentNode)
+          if (parentNode && childNodePosition) {
+            addChildNode(parentNode, childNodePosition)
+          }
         }
       }
     },
